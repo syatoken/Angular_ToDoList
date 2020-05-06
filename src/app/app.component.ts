@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,14 @@ export class AppComponent implements OnInit{
         for (let i = j; i--;) {
           if (this.alertLists[i].period === now) {
             console.log('ok');
-            // alert('ok');
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: this.alertLists[i].name,
+              showCancelButton: true,
+              cancelButtonText: 'あとでにする',
+              timer: 30000
+            });
           }
         }
       }, 1000);
