@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>以下のタスクを削除しますか</h2>
+
+<div mat-dialog-content>
+    {{data.name}}
+</div>
+
+<div class="selectDialog" mat-dialog-actions>
+    <button mat-raised-button class="apply" color="warn" (click)="apply()">OK</button>
+    <button mat-raised-button class="close" (click)="close()">close</button>
+</div>

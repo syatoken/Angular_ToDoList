@@ -1,0 +1,49 @@
+.inputForm {
+    min-width: 500px;
+    width: 100%;
+}
+
+.wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.addForm {
+    width: 100%;
+    @mixin insert {
+        width: 100%;
+    }
+    .name {
+        @include insert;
+    }
+    .date {
+        @include insert;
+    }
+    .detail {
+        @include insert;
+    }
+
+    .addApply {
+        float: right;
+    }
+}
+
+.updateForm {
+    width: 100%;
+    @mixin update {
+        width: 100%;
+    }
+    .name {
+        @include update;
+    }
+    .date {
+        @include update;
+    }
+    .detail {
+        @include update;
+    }
+
+    .updateApply {
+        float: right;
+    }
+}

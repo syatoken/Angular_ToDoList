@@ -1,0 +1,57 @@
+.addNew {
+    width: 75%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+
+.toggle {
+    button {
+        position: relative;
+        .addButon .closeButton {
+            position: absolute;
+            top: 2px;
+        }
+    }
+}
+
+.deployment {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.lists {
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.listMain {
+    overflow: hidden;
+    width: 70%;
+    margin: 0 auto;;
+}
+
+.taskList {
+    float: left;
+    width: 70%;
+    text-align: left;
+}
+
+.operationMenu {
+    float: right;
+    margin-top: 15px;
+}
+
+.overView {
+    clear: left;
+}
+
+mat-list.mat-list.mat-list-base {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.line {
+    clear: right;
+}

@@ -1,0 +1,57 @@
+<div *ngIf="!list" class="inputForm">
+    <h2>新規追加</h2>
+    <div class="wrapper">
+        <form class="addForm">
+            <mat-form-field class="name">
+                <mat-label for="task">タスク名</mat-label>
+                <input matInput #task type="text" class="taskName" (input)="buttonStatus(task.value)" placeholder="タスク名を入力して下さい" required>
+            </mat-form-field><br>
+            <mat-form-field class="date">
+                <mat-label for="inputDate">期間</mat-label>
+                <input matInput #inputDate type="datetime-local" class="taskPeriod">
+            </mat-form-field><br>
+            <mat-form-field class="detail">
+                <mat-label for="detail">詳細</mat-label>
+                <textarea matInput #detail class="taskDetail" rows="4" cols="40" placeholder="詳細"></textarea>
+            </mat-form-field><br>
+            <label *ngIf="isUnchanged">
+                <button class="addApply" mat-raised-button color="primary" matTooltip="タスクを追加する" matTooltipPosition="right" (click)="insert(task.value, inputDate.value, detail.value)">追加</button>
+            </label>
+            <label *ngIf="!isUnchanged">
+                <button class="addApply" mat-raised-button disabled (click)="insert(task.value, inputDate.value, detail.value)">追加</button>
+            </label>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="list" class="inputForm">
+    <h2>内容の編集</h2>
+    <div class="wrapper">
+        <div class="updateForm">
+            <mat-form-field class="name">
+                <mat-label> タスク名 </mat-label>
+                <input matInput #updateName [ngModel]="list.name" (input)="buttonStatus(updateName.value)" placeholder="list"/>
+            </mat-form-field><br>
+            <mat-form-field class="date">
+                <mat-label> 期間 </mat-label>
+                <input matInput type="datetime-local" #updateDate [ngModel]="list.period | date:'y-MM-ddTHH:mm'" (ngModelChange)="list.period = $event" (input)="buttonStatus()"/>
+            </mat-form-field><br>
+            <mat-form-field class="detail">
+                <mat-label> 詳細 </mat-label>
+                <textarea matInput #updateDetail [ngModel]="list.detail" (input)="buttonStatus()" rows="4" cols="40"></textarea>
+            </mat-form-field><br> 
+            <div class="updateApply">
+                <label *ngIf="isUnchanged">
+                    <button mat-raised-button matTooltip="内容を更新する" matTooltipPosition="left" color="primary" (click)="update(list.id, updateName.value, updateDate.value, updateDetail.value)">更新</button>
+                </label>
+                <label *ngIf="!isUnchanged">
+                    <button mat-raised-button disabled>更新</button>
+                </label>
+                <label>
+                    <button class="updateCancel" mat-raised-button matTooltip="編集をキャンセルする" matTooltipPosition="right" (click)="cansel();">キャンセル</button>
+                </label>
+            </div> 
+        </div>
+    </div>
+</div>
+

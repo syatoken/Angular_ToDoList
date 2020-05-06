@@ -1,0 +1,102 @@
+<div class="addNew">
+    <div class="toggle" *ngIf="!buttonFlag">
+        <button mat-raised-button (click)="add()">
+            <mat-icon>note_add</mat-icon>
+            <span class="addButon">タスクを追加します</span>
+        </button>
+    </div>
+    <div class="toggle" *ngIf="buttonFlag">
+        <button mat-raised-button matTooltip="入力フォームを閉じる" (click)="close()">
+            <mat-icon>close</mat-icon>
+            <span class="closeButton">閉じる</span>
+        </button>
+        <div class="deployment">
+            <app-detail-input></app-detail-input>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="basic-container">
+	<mat-nav-list>
+		<mat-list-item (click)="menuTrigger.openMenu()" *ngFor="let list of lists">
+			<div mat-line>
+				{{list.name}}
+			</div>
+			<p mat-line>
+				{{list.period | date:'y-MM-dd'}}
+			</p>
+			<button mat-icon-button #menuTrigger="matMenuTrigger"  [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+		</mat-list-item>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>編集</span>
+            </button>
+			<button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>削除</span>
+            </button>
+		</mat-menu>
+	</mat-nav-list>
+</div> -->
+
+
+
+<ul class="lists">
+    <ng-template ngFor let-list [ngForOf]="lists">
+        <li class="listMain" *ngIf="!list.deleteFlag" (click)="onSelect(list)">
+            <div class="taskList">
+                <h2>
+                    <mat-icon>event_note</mat-icon>
+                    <span class="badge">{{list.name}}</span>
+                </h2>
+            </div>
+            <div class="operationMenu">
+                <button mat-icon-button matTooltip="操作メニュー" matTooltipPosition="right" [matMenuTriggerFor]="menu" (click)="selectedList=null; buttonFlag=false;">
+                    <mat-icon> more_vert </mat-icon> 
+                </button>
+                <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before">
+                    <button mat-menu-item matTooltip="タスクを編集する" matTooltipPosition="right" (click)="operationFlag=true;">
+                        <mat-icon>edit</mat-icon>
+                        <span>編集</span>
+                    </button>
+                    <button mat-menu-item matTooltip="タスクを削除する" matTooltipPosition="right" (click)="onDelete(list.id, list.name)">
+                        <mat-icon>delete</mat-icon>
+                        <span>削除</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <div hidden class="clearFloat"></div>
+            <div *ngIf="selectedList === list" class="overView">
+                <div *ngIf="!operationFlag">
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-icon>border_color</mat-icon>
+                            <!-- <input matInput disabled value="{{selectedList.name}}"> -->
+                            <span class="font_space"> タスク名 : </span>{{selectedList.name}}
+                        </mat-list-item>  
+                    </mat-list><br>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-icon>calendar_today</mat-icon>
+                            <!-- <input matInput disabled value="{{selectedList.period | date:'y-MM-dd'}}"> -->
+                            <span class="font_space"> 期間 : </span>{{selectedList.period | date:'y-MM-dd HH:mm'}}
+                        </mat-list-item>
+                    </mat-list><br>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-icon>note</mat-icon>
+                            <span class="font_space"> 詳細 : </span>{{selectedList.detail}}
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+                <div *ngIf="operationFlag">
+                    <app-detail-input [list]="selectedList" (event)="onReceiveEventFromChild($event)"></app-detail-input>
+                </div>
+            </div>
+            <mat-divider class="line"></mat-divider>
+        </li>
+    </ng-template>
+</ul>

@@ -1,0 +1,34 @@
+<div *ngIf="!list">
+    <h2>add</h2>
+    <div>
+        <form action="">
+            <label for="task">タスク名 :
+                <input #task type="text" class="taskName"  placeholder="タスク名を入力して下さい" required>
+            </label><br>
+
+            <label for="inputDate">期間 :
+                    <input #inputDate type="date" class="taskPeriod" placeholder="" required>
+            </label><br>
+
+            <label for="detail">詳細 :
+                    <textarea class="taskDetail" placeholder="詳細を記入して下さい"></textarea>
+            </label><br>
+            <input type="submit" (click)="insert(task.value, inputDate.value)" value="追加" />
+        </form>
+    </div>
+</div>
+
+<div *ngIf="list">
+    <h2>detail</h2>
+    <div>
+        <label> タスク名：
+            <input #updateName [(ngModel)]="list.name" (input)="buttonStatus()" placeholder="list"/>
+        </label><br>
+        <label> 期間：
+            <input type="date" #updateDate [ngModel]="list.period | date:'y-MM-dd'" (ngModelChange)="list.period = $event" (input)="buttonStatus()"/>
+        </label><br>
+        <label>
+            <button [attr.disabled]="isUnchanged" (click)="update(list.id, updateName.value, updateDate.value)">更新</button>
+        </label>
+    </div>
+</div>
